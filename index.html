@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body, div {
+      margin: 0;
+      padding: 0;
+      border-Width: 0;
+    }
+
+    #tabSelectorBar {
+      display: flex;
+
+      border-style: solid;
+      border-width: 0px;
+      border-bottom-width: 1px;
+      border-color: rgb(0,0,0);
+    }
+
+    .tabSelectorBar_tab {
+      border-style: solid;
+      border-width: 1px;
+      border-bottom-width: 0px;
+      border-color: rgb(0,0,0);
+
+      padding-left: 4px;
+      padding-right: 4px;
+
+      font-size: 25px;
+
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Non-prefixed version, currently
+                            supported by Chrome and Opera */
+
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    // When click on a .tabSelectorBar_tab
+    // I should calculate which "number" it is
+    // then use that "number"
+    // to open the .tab with the same number.
+
+    function loadTab(i){
+      // hide all tabs
+      // show the correct tab
+      const tabs = document.getElementsByClassName("tab");
+
+      const tabsAsArray = Array.from(tabs);
+
+      tabsAsArray.forEach((currentElement, index) => {
+          if(index === i){
+            currentElement.style.display = "block";
+          }else{
+            currentElement.style.display = "none";
+          }
+        });
+    }
+
+    window.onload = () => {
+      const tabSelectorBar_tabs =
+        document.getElementsByClassName("tabSelectorBar_tab");
+
+      const asArray = Array.from(tabSelectorBar_tabs);
+
+      asArray.forEach((currentElement, index) => {
+        currentElement.onclick = () => {
+          loadTab(index);
+        };
+      });
+    };
+  </script>
+</head>
+<body>
+  <div id="viewport">
+    <div id="tabSelectorBar">
+      <div class="tabSelectorBar_tab">Tab 1</div>
+      <div class="tabSelectorBar_tab">Tab 2</div>
+    </div>
+    <div id="tabContainer">
+        <div id="tab1" class="tab displayBlock">
+          <h1>Tab 1</h1>
+        </div>
+        <div id="tab2" class="tab displayNone">
+            <h1>Tab 2</h1>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
